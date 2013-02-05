@@ -16,7 +16,8 @@ You need
 - node.js
 - [mplayer](http://www.mplayerhq.hu)
 - Then (which is rather cool, and like [composer.phar](http://getcomposer.org/)) use npm to get the stuff as defined in package.json. Read [here](http://expressjs.com/guide.html) first, it might help.
-   >$ npm install
+
+       >$ npm install
 - change the root_dir in routes/mplayer.js to suit you.
 Then simply run the app, and point your browser to your server e.g. http://localhost:3000/mplayer.
 
