@@ -4,7 +4,7 @@ var fs = require( 'fs' );
 var util = require( 'util' );
 
 var file = '';
-var root_dir = '/home/shane/Videos/';
+var root_dir = '/home/shane/Videos';
 var status =    {
                     running: false,
                     filename: '',
@@ -19,10 +19,11 @@ var status =    {
 
 var files_hash = {}; //will be a list of hashes againt file name
 var files_obj = [];
+var tmplayer = null; //the spawn of mplayer
 
 setInterval( get_status, 1000);
 build_filesSync( root_dir );
-console.log(util.inspect(files_hash, true, null, true));
+//console.log(util.inspect(files_hash, true, null, true));
 
 function build_filesSync( dir ){
 
@@ -100,12 +101,12 @@ function add_tmplayer_watch(){
                     status['subs'] = (parts[1] == 'yes' ) ? 1 : 0 ;
                     break;
             }
-            console.log( ':::' + line );
+            //console.log( ':::' + line );
         });
     });
 
     tmplayer.stderr.on('data', function (data) {
-            console.log( '---' + data );
+            //console.log( '---' + data );
     });
 
 }
@@ -163,8 +164,8 @@ exports.play = function(req, res){
 
 exports.files = function(req, res){
     files_obj = build_filesSync( root_dir );
-    console.log( util.inspect(files_obj, null, true) );
-    console.log( util.inspect(files_hash, null, true) );
+    //console.log( util.inspect(files_obj, null, true) );
+    //console.log( util.inspect(files_hash, null, true) );
 
     res.send( files_obj );
 };
